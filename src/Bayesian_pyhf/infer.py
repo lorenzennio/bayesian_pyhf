@@ -45,8 +45,8 @@ def model(stat_model, unconstrained_priors, data, ur_hyperparameters = None):
     with pm.Model():
         pars = prepare_inference.priors2pymc(stat_model, priorDict)
         
-        Expected_Data = pm.Poisson("Expected_Data", mu=expData_op_Act(pars), observed=data)
-        # Expected_Data = pm.Normal("Expected_Data", mu=expData_op_Act(pars), observed=data)
+        # Expected_Data = pm.Poisson("Expected_Data", mu=expData_op_Act(pars), observed=data)
+        Expected_Data = pm.Normal("Expected_Data", mu=expData_op_Act(pars), observed=data)
         yield
         
     return model

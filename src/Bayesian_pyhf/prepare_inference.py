@@ -99,7 +99,7 @@ def priors2pymc(model, prior_dict):
     """
 
     pars_combined = []
-
+    
     with pm.Model():
         for name, specs in  prior_dict.items():
 
@@ -138,6 +138,9 @@ def priors2pymc(model, prior_dict):
                 pars_combined.extend(pm.Normal(name, mu=specs['mu'], sigma=specs['sigma']))
                             
             if specs['type'] == 'Uniform_Unconstrained':
+                pars_combined.extend(pm.Uniform(name, lower=specs['lower'], upper=specs['upper']))
+                
+            if specs['type'] == 'Uniform':
                 pars_combined.extend(pm.Uniform(name, lower=specs['lower'], upper=specs['upper']))
             
             # Constrained
