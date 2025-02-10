@@ -143,6 +143,9 @@ def priors2pymc(model, prior_dict):
             # Constrained
             if specs['type'] == 'Normal':
                 pars_combined.extend(pm.Normal(name, mu=specs['mu'], sigma=specs['sigma']))
+                
+            if specs['type'] == 'TruncatedNormal':
+                pars_combined.extend(pm.TruncatedNormal(name, mu=specs['mu'], sigma=specs['sigma'], lower=specs['lower'], upper=specs['upper']))
             
             if specs['type'] == 'Gamma':
                 pars_combined.extend(pm.Gamma(name, alpha=specs['alpha'], beta=specs['beta']))
