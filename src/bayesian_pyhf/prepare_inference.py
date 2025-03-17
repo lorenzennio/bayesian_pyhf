@@ -150,6 +150,10 @@ def priors2pymc(model, prior_dict):
             if specs['type'] == 'Gamma':
                 pars_combined.extend(pm.Gamma(name, alpha=specs['alpha'], beta=specs['beta']))
 
+            if specs['type'] == 'Triangular':
+                pars_combined.extend(pm.Triangular(name, lower=specs['lower'], upper=specs['upper'], c=specs['c']))
+
+
     
     # Test
     try:
